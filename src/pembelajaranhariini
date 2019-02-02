@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  render() {
+    // render untuk Membuat Variabel
+    const name = 'Aziz'
+    const showHelo = true
+    const showCount = true
+    const num1 = 2
+    const num2 = 3
+
+    let math;
+    if(showCount) {
+      math = <h1>{num1} + {num2} = {num1 + num2}</h1>
+    }else{
+      math = null
+    }
+
+
+    return (
+      <div>
+        {/* Bisa Membuat function di sini */}
+        {/* <p>1+1 = {1+1}</p> */}
+        {/* ? => Maka , : => else */}
+        {showHelo? <p>helo {name}</p> : null}
+        {/* {showCount? <p>1 + 1 = {1 + 1} </p>: "Belum Dihitung"} */}
+        {math}
+      </div>
+    );
+  }
+}
+
+export default App;

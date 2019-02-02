@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+import './App.css';
+import Students from './component/Students'
+import Header from './component/Header'
+
+// Css Antd
+import "antd/dist/antd.css";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header
+          title="Students' List"
+        />
+        {/* Melempar Props */}
+        <Students 
+          name='Muhamad Aziz'
+          email='azis49146@gmail.com'
+          phone='0895804171496'
+        />
+
+        <Students 
+         name='Karno'
+         email='Karnodoang@gmail.com'
+         phone='0895804171496'
+        />
+
+        <Students 
+         name='Susi'
+         email='Susisimilikiti@gmail.com'
+         phone='0895804171496'
+        />
+
+      </div>
+    );
+  }
+}
+
+export default App;
