@@ -3,34 +3,34 @@ import React from 'react';
 // import './Header.sass'
 
 // antd
-import { Row , Col } from 'antd';
-
+import { Layout, Menu } from 'antd';
+const { Header } = Layout;
 
 
 // propsnya dimasukin ke parameter
 // Props tidak mengungaknan THIS karena header ini bukan menggunakan class component
-const Header = props => {
+const NavBar = props => {
     return ( 
-        <div>
-            <Row>
-                <Col span={12}>
-                    <h1 className='header'>{props.title}</h1>
-                </Col>  
-                <Col span={12}>
-                    <p>Home</p>
-                </Col>
-            </Row>
-        </div>
+        <Layout className="layout">
+            <Header>
+                    <div className="logo" />
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={['2']}
+                    style={{ lineHeight: '64px' }}
+                >
+                    <Menu.Item key="1">{props.title}</Menu.Item>
+                    <Menu.Item key="2">Home</Menu.Item>
+                   
+                </Menu>
+            </Header>
+      </Layout>
      );
 }
 
 Header.defaultProps = {
-    title: "Students' List"
-}
-
-const StylingHeader = {
-    color: 'green',
-    fontSize: '20px'
+    title: "student's lst"
 }
  
-export default Header;
+export default NavBar;

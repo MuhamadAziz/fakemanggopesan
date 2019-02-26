@@ -1,24 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; //  Untuk mengecek tipe PRops
+import Student from './Student';
+import {Consumer} from '../context';
 
 class Students extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // State-> lahan untuk menyimpan  string , props 
+    //     this.state = { 
+           
+    //      }
+    // }
+
+    // // Delete
+    // onDeleteStudent = id => {
+    //     // array lama
+    //    const { students } = this.state
+    // //    manambah array Baru = array yang lama
+    //    const  newStudents = students.filter(student => student.id !== id )
+
+    // //    memasukan array lama menggati array baru
+    //    this.setState({
+    //        students: newStudents
+    //    })
+    // }
     render() { 
         // cara mengambiil props dari class harus menggunakan THIS karena 
 
         // const namanya distraction
-        const { name, email, phone } = this.props;
+
         return ( 
-            <div>
-                <h1>{name}</h1>
-                <ul>
-                    <li>{email}</li>
-                    <li>{phone}</li>
-                </ul>
-            </div>
+            <Consumer>
+                {value => {
+                    const {students} = value
+                    return(
+                    <div>
+                        {students.map(student => (
+                            <Student
+                                key = {student.id}
+                                student = {student}
+                                // deleteData = {this.onDeleteStudent.bind(this , student.id)}
+                            />
+                        ))}
+                    </div>
+                    )
+                }}
+            </Consumer>
+          
         );
     }
 }

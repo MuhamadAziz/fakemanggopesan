@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Register from './component/AppRegist/index'
-import './component/AppRegist/Button.sass'
-import './component/AppRegist/Text.sass'
-
+// import Register from './component/AppRegist/index'
+import NavBar from './component/Header';
+import Students from './component/Students';
+import {Provider} from './context';
+import Categories from './component/Categories';
 
 // Css Antd
 import "antd/dist/antd.css";
@@ -11,9 +12,13 @@ import "antd/dist/antd.css";
 class App extends Component {
   render() {
     return (
-      <div> 
-          <Register />
-      </div>
+      <Provider>
+        <div> 
+          {/* <NavBar title="student's lst" /> */}
+          <Categories/>
+          {/* <Students/> */}
+        </div>
+      </Provider>
     );
   }
 }
