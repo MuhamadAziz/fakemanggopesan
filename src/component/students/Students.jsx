@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; //  Untuk mengecek tipe PRops
 import Student from './Student';
-import {Consumer} from '../context';
+import {Consumer} from '../../context';
 
 class Students extends Component {
     // constructor(props) {

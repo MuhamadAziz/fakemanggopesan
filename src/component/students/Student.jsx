@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, List, Icon} from 'antd';
-import {Consumer} from '../context';
+import {Consumer} from '../../context';
 
 class Student extends Component {
     constructor(props) {
@@ -38,6 +38,7 @@ class Student extends Component {
                                     <h1>{name}</h1>
                                     <Icon type="down"  onClick={this.onShowToggle}/>
                                     <Icon type="delete" onClick={this.onDelete.bind(this, id, dispatch)} />
+                                    <Icon type="edit" />
                                 </div>
                                 {collapse ? (
                                         <List>

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 // import Register from './component/AppRegist/index'
-import NavBar from './component/Header';
-import Students from './component/Students';
+import NavBar from './component/layout/Header';
+import Students from './component/students/Students';
 import {Provider} from './context';
-import Categories from './component/Categories';
+import AddStudent from './component/students/AddStudents'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import About from './component/pages/about'
+// import Categories from './component/Categories';
 
 // Css Antd
 import "antd/dist/antd.css";
@@ -13,11 +16,16 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <div> 
-          {/* <NavBar title="student's lst" /> */}
-          <Categories/>
-          {/* <Students/> */}
-        </div>
+        <Router>
+          <div> 
+            <NavBar title="student's lst" />
+            <Switch>
+              <Route exact path='/' component={Students}/>
+              <Route exact path='/student/add' component={AddStudent}/>
+              <Route exact path='/about' component={About}/>
+            </Switch>
+          </div>
+        </Router>
       </Provider>
     );
   }
