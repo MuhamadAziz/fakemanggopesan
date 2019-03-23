@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Consumer } from "../../context";
 import TextInputGroup from '../layout/TextInputGroup';
-import uuid from 'uuid';
-import Password from 'antd/lib/input/Password';
-import { error } from 'util';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import {addStudents} from '../../store/actions/studentActions'
 
 class AddStudent extends Component {
     constructor(props) {
@@ -22,21 +21,11 @@ class AddStudent extends Component {
         [e.target.name]: e.target.value
     })
 
-    onSubmit = (dispatch,e) => {
-        e.preventDefault();
+    onSubmit = async() => {
+        // e.preventDefault();
         console.log(this.state)
         
         const { name, email, phone } = this.state;
-
-        // konesep react yang lama ganti yang baru 
-
-        const newStudetns = {
-            id: uuid(),
-            name,
-            email,
-            phone,
-        }
-        dispatch({type:'ADD_STUDENT',payload: newStudetns})
 
         if(name === ''){
             this.setState({ errors: {name: 'Name is required'}})
@@ -54,25 +43,36 @@ class AddStudent extends Component {
             return;
 
         }
+
+        const newStudent = {
+            name,
+            email,
+            phone
+        }
+
+          // Fungsi Add 
+          this.props.addStudents(newStudent);
+
 // Clear state
         this.setState({
             name: '',
             email: '',
             phone: ''
         })
+    
+      
+    // Redirect
+    this.props.history.push("/") 
     }
 
     render() {
         // dispatch = melempar dari value
         const { name, email, phone, errors } = this.state;
         return (
-            <Consumer>
-                {value => {
-                    const { dispatch } = value
-                    return (
+    
                         <div>
                             <div>ADD FORM</div>
-                            <form onSubmit={this.onSubmit.bind(this, dispatch)}>
+                            <form onSubmit={this.onSubmit}>
                                 <TextInputGroup
                                     type='text'
                                     label='Name'
@@ -83,7 +83,7 @@ class AddStudent extends Component {
                                     error= {errors.name}
 
                                 />
-                                 <TextInputGroup
+                                <TextInputGroup
                                     type='text'
                                     label='Email'
                                     name='email'
@@ -92,7 +92,7 @@ class AddStudent extends Component {
                                     onChange={this.onChange}
                                     error= {errors.email}
                                 />
-                                 <TextInputGroup
+                                <TextInputGroup
                                     type='text'
                                     label='Phone'
                                     name='phone'
@@ -106,11 +106,8 @@ class AddStudent extends Component {
                                 <input type="submit" value="submit" />
                             </form>
                         </div>
-                    )
-                }}
-            </Consumer>
         )
     }
 }
 
-export default AddStudent;
+export default connect(null, {addStudents})(AddStudent);

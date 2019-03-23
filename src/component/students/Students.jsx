@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; //  Untuk mengecek tipe PRops
 import Student from './Student';
-import {Consumer} from '../../context';
+import {connect} from 'react-redux'
+import {getStudents} from '../../store/actions/studentActions'
+
 
 class Students extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     // State-> lahan untuk menyimpan  string , props 
-    //     this.state = { 
-           
-    //      }
-    // }
-
-    // // Delete
-    // onDeleteStudent = id => {
-    //     // array lama
-    //    const { students } = this.state
-    // //    manambah array Baru = array yang lama
-    //    const  newStudents = students.filter(student => student.id !== id )
-
-    // //    memasukan array lama menggati array baru
-    //    this.setState({
-    //        students: newStudents
-    //    })
-    // }
+ 
+    componentDidMount() {
+        this.props.getStudents();
+    }
     render() { 
-        // cara mengambiil props dari class harus menggunakan THIS karena 
-
-        // const namanya distraction
-
+    
+        const { students } = this.props 
         return ( 
-            <Consumer>
-                {value => {
-                    const {students} = value
-                    return(
+            
                     <div>
                         {students.map(student => (
                             <Student
@@ -43,10 +24,7 @@ class Students extends Component {
                             />
                         ))}
                     </div>
-                    )
-                }}
-            </Consumer>
-          
+
         );
     }
 }
@@ -58,4 +36,10 @@ Students.propTypes = {
     phone: PropTypes.string.isRequired
 }
 
-export default Students;
+const mapStateToProps = (state) => ({
+    students: state.student.students
+})
+// students dapat dari state studnt reducer 
+// student di ambil dari main reducer
+
+export default connect(mapStateToProps, {getStudents})(Students)

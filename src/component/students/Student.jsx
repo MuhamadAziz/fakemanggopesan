@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Card, List, Icon} from 'antd';
-import {Consumer} from '../../context';
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import {deleteStudent} from '../../store/actions/studentActions'
+import { connect } from 'react-redux';
 
 class Student extends Component {
     constructor(props) {
@@ -8,7 +11,7 @@ class Student extends Component {
         this.onShowToggle = this.onShowToggle.bind(this);
         this.state = { 
             collapse: false
-         }
+        }
     }
 
     onShowToggle() {
@@ -17,28 +20,32 @@ class Student extends Component {
         });
     }
 
-    onDelete = (id, dispatch) => {
-       dispatch({type: 'DELETE_STUDENT', payload: id})
+    onDelete = id => {
+        this.props.deleteStudent(id)
     }
 
-    render() { 
+
+    // onEdit = (id, dispatch) => {
+    
+    //     // console.log(response)
+    // }
+
+    render() {  
 
         // distructor
         const {name, phone, email, id} = this.props.student
         const { collapse } = this.state
         // console.log(student)
-        return ( 
-            <Consumer>
-                {value => {
-                    const {dispatch} = value
-                    return (
+        return (
                         <div style={{backgroundColor: '#ECCECEC', padding: '30px'}}>
                             <Card bordered style={{ width: 800 }}>
                                 <div style={{display:'flex'}}>
                                     <h1>{name}</h1>
                                     <Icon type="down"  onClick={this.onShowToggle}/>
-                                    <Icon type="delete" onClick={this.onDelete.bind(this, id, dispatch)} />
-                                    <Icon type="edit" />
+                                    <Icon type="delete" onClick={this.onDelete.bind(this, id)} />
+                                    <Link to={`student/edit/${id}`}>  
+                                        <Icon type="edit"  />
+                                    </Link>
                                 </div>
                                 {collapse ? (
                                         <List>
@@ -53,12 +60,10 @@ class Student extends Component {
                             </Card> 
             
                         </div>
-                    )
-                }}
-            </Consumer>
+    
            
          );
     }
 }
- 
-export default Student;
+
+export default connect(null, {deleteStudent})(Student);

@@ -24,11 +24,10 @@ const NavBar = props => {
                     <Menu.Item key="2"><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item><Link to="/student/add">Add Student</Link></Menu.Item>
                     <Menu.Item ><Link to="/about">About</Link></Menu.Item>
-                   
                 </Menu>
             </Header>
-      </Layout>
-     );
+        </Layout>
+    );
 }
 
 Header.defaultProps = {
