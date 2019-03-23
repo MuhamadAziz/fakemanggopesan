@@ -1,4 +1,4 @@
-import {GET_STUDENTS, DELETE_STUDENT, ADD_STUDENT, GET_STUDENT} from './type'
+import {GET_STUDENTS, DELETE_STUDENT, ADD_STUDENT} from './type'
 import axios from "axios"
 
 // Terdapat 2 function yaitu get students dan dispatch

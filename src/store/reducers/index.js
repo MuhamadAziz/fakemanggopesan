@@ -2,7 +2,9 @@
 import { combineReducers } from 'redux'
 // Student reducer yaitu ngambil dari student
 import studentReducer from './studentReducer'
+import authReducer from './authReducer'
 
 export default combineReducers({
-    student: studentReducer
+    student: studentReducer,
+    auth: authReducer
 })

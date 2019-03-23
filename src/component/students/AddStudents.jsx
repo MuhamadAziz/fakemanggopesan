@@ -26,6 +26,7 @@ class AddStudent extends Component {
         console.log(this.state)
         
         const { name, email, phone } = this.state;
+        
 
         if(name === ''){
             this.setState({ errors: {name: 'Name is required'}})
@@ -63,6 +64,15 @@ class AddStudent extends Component {
       
     // Redirect
     this.props.history.push("/") 
+    }
+    
+
+    componentWillMount() {
+        const { auth, history } = this.props;
+
+        if(!auth.isAuth) {
+            history.push('/home');
+        }
     }
 
     render() {
@@ -110,4 +120,8 @@ class AddStudent extends Component {
     }
 }
 
-export default connect(null, {addStudents})(AddStudent);
+const mapStateToProps = state => ({
+    auth: state.auth.auth
+});
+
+export default connect(mapStateToProps, {addStudents})(AddStudent);

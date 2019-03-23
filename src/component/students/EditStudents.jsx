@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextInputGroup from '../layout/TextInputGroup';
-import axios from 'axios';
 
 class EditStudents extends Component {
     constructor(props) {
@@ -10,7 +9,6 @@ class EditStudents extends Component {
             email: '',
             phone: '',
             errors: {}
-
         }
     }
 
