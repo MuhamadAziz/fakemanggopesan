@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Form, Input, Select, Button, AutoComplete,
+  Form, Input, Select, Button, AutoComplete, message
 } from 'antd';
 import axios from 'axios';
 
@@ -27,6 +27,8 @@ class Register extends React.Component {
       })
         .then((res) => {
           console.log('berhasil', res)
+          message.success('Berhasil Regist')
+          this.props.history.push('/login')
         })
 
     });

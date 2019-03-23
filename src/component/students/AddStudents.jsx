@@ -68,10 +68,9 @@ class AddStudent extends Component {
     
 
     componentWillMount() {
-        const { auth, history } = this.props;
 
-        if(!auth.isAuth) {
-            history.push('/home');
+        if(!this.props.auth.isAuth) {
+           this.props.history.push('/home');
         }
     }
 
